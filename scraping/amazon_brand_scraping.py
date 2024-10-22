@@ -26,8 +26,9 @@ class AmazonBrandScrapingStrategy(BrandScrapingStrategy):
         # Open Amazon and search for the brand
         driver.get(self.amazon_base_url)
         search_bar = self.get_search_bar(driver)
-        search_bar.send_keys(f"{brand_name}")
-        search_bar.send_keys(Keys.RETURN)
+        if search_bar:
+            search_bar.send_keys(f"{brand_name}")
+            search_bar.send_keys(Keys.RETURN)
 
         # Iterate through paginated pages
         while next_page:

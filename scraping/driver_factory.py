@@ -24,6 +24,7 @@ class DriverFactory:
         chrome_options.add_argument('--disable-gpu')
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument(f'user-agent={cls.user_agent.random}')
+        chrome_options.add_argument("--headless")
         # Add more options or proxy settings here if needed
 
         driver_path = ChromeDriverManager().install()

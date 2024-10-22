@@ -18,7 +18,8 @@ class ScrappingService:
             self.bulk_create_brand_product(products, brand)
             time.sleep(random.uniform(5, 10))
 
-        print(f"Scraping done for {len(brands)}")
+        brand_names = list(brands.values_list('name', flat=True))
+        print(f"Scraping done for {len(brands)} brands: {brand_names}")
 
     @staticmethod
     def bulk_create_brand_product(products_data, brand):
