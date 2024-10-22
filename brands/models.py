@@ -3,7 +3,15 @@ from django.db import models
 # Create your models here.
 
 
-class Brand(models.Model):
+class BaseModel(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        abstract = True
+        ordering = ('-created_at',)
+
+
+class Brand(BaseModel):
     name = models.CharField(max_length=100)
     identifier = models.CharField(max_length=100, null=True, blank=True)
     url = models.URLField(null=True, blank=True)
@@ -12,7 +20,7 @@ class Brand(models.Model):
         return self.name
 
 
-class BrandAwareModel(models.Model):
+class BrandAwareModel(BaseModel):
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
 
     class Meta:
@@ -26,6 +34,7 @@ class Product(BrandAwareModel):
     image_url = models.CharField(max_length=255, null=True)
 
     class Meta:
+        ordering = ('-created_at',)
         unique_together = ('brand', 'asin',)
 
     def __str__(self):

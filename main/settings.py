@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # third-party app
+    'rest_framework',
+
     'brands',
 ]
 
@@ -133,10 +136,36 @@ CELERY_RESULT_BACKEND = os.environ.get("CELERY_RESULT_BACKEND", "")
 CELERY_TIMEZONE = TIME_ZONE
 CELERY_TASK_DEFAULT_QUEUE = "amazon_scraper"
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+CELERY_MAX_RETRY = os.environ.get('CELERY_MAX_RETRY', 5)
 
 CELERY_BEAT_SCHEDULE = {
     "scrape_data": {
         "task": "brands.tasks.run_product_scraping",
         "schedule": crontab(minute='0', hour='*/6'),
     },
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.renderers.BrowsableAPIRenderer',
+    ),
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+    ),
+
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': os.environ.get('PAGINATION_PAGE_SIZE', 10),
 }
