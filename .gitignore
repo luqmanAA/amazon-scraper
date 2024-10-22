@@ -8,6 +8,7 @@ env/
 static/
 *.env
 *.sqlite3
+celerybeat-*
 
 __pycache__/
 

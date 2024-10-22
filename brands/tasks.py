@@ -2,8 +2,8 @@ from django.conf import settings
 
 from brands.models import Brand
 from main.celery import app
-from scraping.amazon_brand_scraping import AmazonBrandScrapingStrategy
-from scraping.product_services import ScrappingService
+from scraper.amazon_brand_scraping import AmazonBrandScrapingStrategy
+from scraper.product_services import ScrappingService
 
 
 @app.task(autoretry_for=(Exception,), retry_backoff=True, retry_kwargs={'max_reties': settings.CELERY_MAX_RETRY})

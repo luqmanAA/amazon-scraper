@@ -6,7 +6,7 @@ from selenium.common import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
-from scraping.scraping_strategy import BrandScrapingStrategy
+from scraper.scraping_strategy import BrandScrapingStrategy
 
 
 class AmazonBrandScrapingStrategy(BrandScrapingStrategy):

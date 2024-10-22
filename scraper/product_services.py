@@ -2,8 +2,8 @@ import random
 import time
 
 from brands.models import Product, ProductScrapingHistory
-from scraping.driver_factory import DriverFactory
-from scraping.scraping_strategy import BrandScrapingStrategy
+from scraper.driver_factory import DriverFactory
+from scraper.scraping_strategy import BrandScrapingStrategy
 
 
 class ScrappingService:

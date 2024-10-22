@@ -8,12 +8,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 class DriverFactory:
     # Factory to create and configure WebDriver instances
 
-    proxy_list = [
-        "http://45.119.133.218:3128",
-        "http://160.86.242.23:8080",
-        "http://20.111.54.16:8123",
-        "http://20.111.54.16:8123",
-    ]
     user_agent = UserAgent()
 
     @classmethod
