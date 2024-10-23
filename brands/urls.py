@@ -5,6 +5,7 @@ from brands.views import ProductListAPIView, BrandListAPIView
 app_name = 'brands'
 
 urlpatterns = [
-    path('', BrandListAPIView.as_view(), name='brands'),
-    path('<int:brand_id>/products', ProductListAPIView.as_view(), name='products'),
+    path('brands', BrandListAPIView.as_view(), name='brands'),
+    path('brands/<int:brand_id>/products', ProductListAPIView.as_view(), name='brand_products'),
+    path('products', ProductListAPIView.as_view(), name='products'),
 ]

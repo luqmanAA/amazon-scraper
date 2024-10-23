@@ -10,13 +10,16 @@ from brands.serializers import ProductSerializer, BrandSerializer
 class BrandListAPIView(ListAPIView):
     serializer_class = BrandSerializer
     queryset = Brand.objects.all()
+    search_fields = ['name', ]
 
 
 class ProductListAPIView(ListAPIView):
     serializer_class = ProductSerializer
+    search_fields = ['name', 'asin', ]
 
     def get_queryset(self):
-        return Product.objects.filter(
-            brand_id=self.kwargs.get('brand_id')
-        )
+        params = {}
+        if self.kwargs.get('brand_id'):
+            params['brand_id'] = self.kwargs.get('brand_id')
+        return Product.objects.filter(**params)
 

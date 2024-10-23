@@ -116,3 +116,18 @@ This is one of the measure put used to bypass Amazon's anti-scraping measure
 3. `Element not found` error on css selector search was handled to fail silently and this is a possible cause for when getting zero product scraped
 4. Random delays were added between requests (time.sleep()) to mimic human-like interaction. 
 5. User agents were randomly rotated using the fake-useragent library. 
+
+
+## Frontend
+The app uses DRF to implement REST API for brands and products which are both accessible via DRF's browsable API through: api/brands/ and api/brands/{brand_id}/products respectively.
+
+* Brands: http://localhost:3100/api/brands
+* Products in a Brand: http://localhost:3100/api/brands/1/products
+* All Products: http://localhost:3100/api/products
+
+### NOTE:
+* Basic authentication is implemented to ensure the endpoints are authenticated route. You can use the user credentials created in [Installtion](#installation) step 6 above.
+* The endpoints have search functionality to search with name (for brands & products) and asin (for products) 
+
+
+### Happy Scraping 

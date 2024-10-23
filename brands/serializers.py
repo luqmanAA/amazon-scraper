@@ -17,10 +17,11 @@ class BrandSerializer(serializers.ModelSerializer):
 
     def get_products_url(self, obj):
         request = self.context.get('request')
-        return reverse('brands:products', kwargs={'brand_id': obj.pk}, request=request)
+        return reverse('brands:brand_products', kwargs={'brand_id': obj.pk}, request=request)
 
 
 class ProductSerializer(serializers.ModelSerializer):
+    brand = serializers.ReadOnlyField(source='brand.name')
 
     class Meta:
         model = Product
@@ -30,4 +31,5 @@ class ProductSerializer(serializers.ModelSerializer):
             'asin',
             'sku',
             'image_url',
+            'brand',
         )

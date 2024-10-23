@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # third-party app
+    'django_filters',
     'rest_framework',
 
     'brands',
