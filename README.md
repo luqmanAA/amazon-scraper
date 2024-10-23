@@ -7,7 +7,11 @@ The service is built using Selenium for web scraping, BeautifulSoup for parsing,
 
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Running the Task](#running the task)
+- [Running the Task](#running-the-task)
+- [Task Scheduling](#task-scheduling)
+- [Scrapping Mechanism](#scrapping-mechanism)
+- [Anti-Scraping Measures](#anti-scraping-measures)
+- [Frontend](#frontend)
 
 ---
 
